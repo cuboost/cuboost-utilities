@@ -1,7 +1,7 @@
 "use client";
 
-import { useFormik } from 'formik';
-import * as Yup from "yup";
+// import { useFormik } from 'formik';
+// import * as Yup from "yup";
 import { useRouter } from 'next/navigation';
 // Google
 import { FcGoogle } from "react-icons/fc";
@@ -75,7 +75,6 @@ export default function SignUp() {
     }
 
     useEffect(() => {
-        console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
         if (user) {
             router.push("/");
         } else {

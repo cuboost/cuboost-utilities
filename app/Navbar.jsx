@@ -6,11 +6,15 @@ import { useEffect, useState } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
 import { motion } from "framer-motion";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase/firebase";
+import Image from "next/image";
 
 
 export default function Navbar({ links }) {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [user, loading] = useAuthState(auth);
 
     useEffect(() => {
         if (innerWidth > 1024) {
@@ -39,13 +43,15 @@ export default function Navbar({ links }) {
                 exit={{ opacity: 0, x: -50 }}
                 className={` absolute lg:static top-0 left-0 w-4/5 lg:w-2/6 p-10 h-full bg-gradient-to-br from-slate-300/40 to-slate-300/60 backdrop-blur-3xl z-40 rounded-r-3xl ${isOpen ? "flex" : "hidden"}  flex-col justify-center items-center rounded-l-3xl lg:ml-1`}>
 
-                {pathname == "/" && (
-                    <div className=" flex justify-center items-center flex-col">
-                        <div className="rounded-full w-24 h-24 bg-slate-500">
-
+                {pathname == "/" && user && (
+                    <Link href={"/"}>
+                        <div className=" flex justify-center items-center flex-col">
+                            <div className="rounded-full w-24 h-24 bg-slate-500">
+                                {/* <Image src={user.photoURL} alt="Avatar" referrerPolicy="no-referrer" className="w-10 rounded-full" width={400} height={400} /> */}
+                            </div>
+                            <h2>{user.displayName}</h2>
                         </div>
-                        <h2>Name</h2>
-                    </div>
+                    </Link>
                 )}
 
                 <div className=" flex flex-col justify-center items-center gap-6">
