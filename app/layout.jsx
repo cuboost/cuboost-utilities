@@ -6,7 +6,7 @@ const ubuntu = Ubuntu({ subsets: ['latin'], weight: ["400", "500"] });
 
 export const metadata = {
   title: 'Cuboost Utilities',
-  description: 'Cuboost Utilities from A to Z.',
+  description: 'Cuboost Utilities: useful things from A to Z.',
 };
 
 export default function RootLayout({ children }) {
