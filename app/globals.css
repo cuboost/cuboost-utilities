@@ -1,10 +1,12 @@
+/* Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Base Styles */
 @layer base {
   h1 {
-    @apply text-4xl bg-gradient-to-br from-sky-600 to-cyan-700 inline-block text-transparent bg-clip-text font-medium text-center pb-6;
+    @apply text-4xl bg-gradient-to-br from-sky-600 to-cyan-700 block text-transparent bg-clip-text font-medium text-center pb-6;
   }
 
   h2 {
@@ -12,31 +14,36 @@
   }
 
   h3 {
-    @apply text-2xl bg-gradient-to-br from-sky-700 to-cyan-700 inline-block text-transparent bg-clip-text
+    @apply text-2xl bg-gradient-to-br from-sky-700 to-cyan-700 inline-block text-transparent bg-clip-text;
   }
 
   h4 {
-    @apply text-xl
+    @apply text-xl;
   }
 
   h5 {
-    @apply text-lg
+    @apply text-lg;
   }
 
   button {
-    @apply outline-none text-cyan-700
+    @apply outline-none text-cyan-700;
   }
 
   hr {
-    @apply border-2 border-cyan-600 rounded-md
+    @apply border-2 border-cyan-600 rounded-md;
+  }
+
+  input {
+    @apply border-none rounded-md select-none outline-none;
   }
 }
 
+/* Background */
 :root {
   --foreground: black;
   --background-start: #15e7d6 0%;
   --background-end: #168cd5 100%;
-  --ellipse: #0DFFEC 0%, #1174e5 100%;
+  --ellipse: #0dffec 0%, #1174e5 100%;
   --blur: 20px;
 }
 
@@ -52,7 +59,11 @@
 
 body {
   color: var(--foreground);
-  background: linear-gradient(to bottom left, var(--background-start), var(--background-end));
+  background: linear-gradient(
+    to bottom left,
+    var(--background-start),
+    var(--background-end)
+  );
   overflow: hidden;
   height: 100svh;
 }
@@ -105,5 +116,68 @@ body {
   100% {
     scale: 1.1;
     rotate: 0deg;
+  }
+}
+
+/* Loader */
+.loader {
+  width: 48px;
+  height: 48px;
+  margin: auto;
+  position: relative;
+  scale: 2;
+}
+
+.loader:before {
+  content: "";
+  width: 48px;
+  height: 5px;
+  background: #000;
+  opacity: 0.25;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  border-radius: 50%;
+  animation: shadow 0.8s linear infinite;
+}
+
+.loader:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #0e7490;
+  animation: bxSpin 0.8s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+}
+
+@keyframes bxSpin {
+  17% {
+    border-bottom-right-radius: 3px;
+  }
+  25% {
+    transform: translateY(9px) rotate(22.5deg);
+  }
+  50% {
+    transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+    border-bottom-right-radius: 40px;
+  }
+  75% {
+    transform: translateY(9px) rotate(67.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@keyframes shadow {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1);
   }
 }
